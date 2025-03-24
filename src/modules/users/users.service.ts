@@ -9,7 +9,7 @@ import { User } from './schemas/user.schema';
 export class UsersService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) { }
   create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+    return createUserDto;
   }
 
   findAll() {
