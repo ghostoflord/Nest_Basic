@@ -8,7 +8,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const port = configService.get('PORT');
   app.setGlobalPrefix('api/v1', { exclude: [''] });
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, }));
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }));
   await app.listen(port);
 }
 bootstrap();
