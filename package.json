@@ -32,12 +32,14 @@
     "@nestjs/mongoose": "10.0.10",
     "@nestjs/passport": "10.0.3",
     "@nestjs/platform-express": "10.3.10",
+    "dayjs": "1.11.12",
     "mongoose": "8.5.1",
     "passport": "0.7.0",
     "passport-jwt": "4.0.1",
     "passport-local": "1.0.0",
     "reflect-metadata": "0.2.2",
-    "rxjs": "7.8.1"
+    "rxjs": "7.8.1",
+    "uuid": "10.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "10.4.2",
@@ -50,6 +52,7 @@
     "@types/passport-jwt": "^4.0.1",
     "@types/passport-local": "^1.0.38",
     "@types/supertest": "6.0.2",
+    "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "7.17.0",
     "@typescript-eslint/parser": "7.17.0",
     "api-query-params": "5.4.0",

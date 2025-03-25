@@ -8,6 +8,9 @@ import { Model, mongo } from 'mongoose';
 import { hashPasswordHelper } from '@/helpers/util';
 import aqp from 'api-query-params';
 import mongoose from 'mongoose';
+import { CreateAuthDto } from '@/auth/dto/create-auth.dto';
+import { v4 as uuidv4 } from 'uuid';
+import dayjs from 'dayjs';
 
 @Injectable()
 export class UsersService {
@@ -85,4 +88,31 @@ export class UsersService {
       throw new BadRequestException("Id không đúng định dạng mongodb")
     }
   }
+
+  async handleRegister(registerDto: CreateAuthDto) {
+    const { name, email, password } = registerDto;
+
+    //check email
+    const isExist = await this.IsEmailExist(email);
+    if (isExist === true) {
+      throw new BadRequestException(`Email đã tồn tại: ${email}. Vui lòng sử dụng email khác.`)
+    }
+
+    //hash password
+    const hashPassword = await hashPasswordHelper(password);
+    const user = await this.userModel.create({
+      name, email, password: hashPassword,
+      isActive: false,
+      codeId: uuidv4(),
+      codeExpired: dayjs().add(1, 'minutes')
+    })
+
+    //trả ra phản hồi
+    return {
+      _id: user._id
+    }
+
+    //send email
+  }
+
 }
