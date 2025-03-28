@@ -63,7 +63,16 @@ export class UsersService {
       .select("-password")
       .sort(sort as any);
 
-    return { results, totalPages };
+    return {
+      meta: {
+        current: current, //trang hiện tại
+        pageSize: pageSize, //số lượng bản ghi đã lấy
+        pages: totalPages,  //tổng số trang với điều kiện query
+        total: totalItems // tổng số phần tử (số bản ghi)
+      },
+      results //kết quả query
+    }
+
   }
 
 
